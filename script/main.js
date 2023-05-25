@@ -11,8 +11,18 @@ window.addEventListener('load', () => {
         cancelButtonText: 'No',
     }).then((result) => {
         if (result.isConfirmed) {
-            document.querySelector('.song').play();
-            animationTimeline();
+            // Yêu cầu người dùng tương tác trước khi phát âm thanh
+            Swal.fire({
+                title: 'Click to play the music',
+                icon: 'info',
+                showCancelButton: false,
+                showConfirmButton: true,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Play',
+            }).then(() => {
+                document.querySelector('.song').play();
+                animationTimeline();
+            });
         } else {
             animationTimeline();
         }
